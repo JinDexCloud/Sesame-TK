@@ -139,6 +139,8 @@ jobs:
 
       - name: Create Tag from Version
         if: startsWith(github.ref, 'refs/heads/main') && github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION_TAG="v${{ steps.extract_info.outputs.version }}"
           echo "Creating tag: $VERSION_TAG"
